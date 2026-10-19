@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fffbf3;
+  color: #191919;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* 底部安全区，移动端不被 home indicator 挡 */
+.safe-bottom {
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 极细的纹理底，避免大面积纯色显得空 */
+.paper {
+  background-image: radial-gradient(circle at 1px 1px, rgba(218, 41, 28, 0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.35s ease both;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.pulse-soft {
+  animation: pulse-soft 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .pulse-soft {
+    animation: none;
+  }
+}

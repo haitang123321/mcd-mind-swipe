@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    environment:
+      - MENU_PROVIDER=${MENU_PROVIDER:-mock}
+      - MCD_MCP_TOKEN=${MCD_MCP_TOKEN:-}
+      - MCD_STORE_ID=${MCD_STORE_ID:-}
+      - DB_PATH=/app/data/mind_swipe.db
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+
+  web:
+    image: node:22-alpine
+    working_dir: /app/apps/web
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    volumes:
+      - ./apps/web:/app/apps/web
+    environment:
+      - VITE_API_BASE=http://api:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api

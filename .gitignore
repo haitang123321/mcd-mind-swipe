@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+apps/web/vite.config.ts.timestamp-*
+
+# 本地数据与日志
+data/*.db
+data/*.db-*
+data/*.log
+data/probe*
+.env
+
+# 受限环境下运行时生成的 8 字符探测文件（内容为 4 字节标记）
+# 根目录逐个列出（不能用通配，否则会误伤 services/ 这类真实目录）
+/34oombo7
+/_5vweytg
+/ekr92uh1
+/ewhhvlti
+/fs0sjl8f
+/ha0vm906
+/uxh2ciwp
+# services/api 下没有 8 字符的真实文件名（app=3, tests=5, Dockerfile=10）
+services/api/????????
+
+# 系统
+.DS_Store
